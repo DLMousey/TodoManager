@@ -12,8 +12,6 @@ namespace TodoManager.Views
 {
     public partial class ListPage : Page
     {
-        private int SelectedId;
-
         public ListPage()
         {
             this.InitializeComponent();
@@ -34,10 +32,15 @@ namespace TodoManager.Views
                 return;
             }
 
-            List<object> CurrentItems = Output.Items.ToList();
-            List<string> FilteredValues = new List<string>();
+            List<object> CurrentItems = Output.Items.ToList(); // TODO : Investigate why ToList<TodoModel>() isn't working
+            List<TodoModel> CastValues = new List<TodoModel>();
+            foreach (object Todo in CurrentItems)
+            {
+                CastValues.Add((TodoModel)Todo);
+            }
 
-            Output.ItemsSource = ExecuteFiltering(FilterText, FilteredValues, CurrentItems);
+            List<TodoModel> FilteredValues = new List<TodoModel>();
+            Output.ItemsSource = ExecuteFiltering(FilterText, FilteredValues, CastValues);
         }
 
         private void RemoveData(object sender, RoutedEventArgs e)
@@ -53,29 +56,17 @@ namespace TodoManager.Views
             this.Frame.Navigate(typeof(DetailPage), Id);
         }
 
-        private List<string> ExecuteFiltering(string FilterValue, List<String> FilteredValues, List<object> items)
+        private List<TodoModel> ExecuteFiltering(string FilterValue, List<TodoModel> FilteredValues, List<TodoModel> items)
         {
-            foreach (String value in items)
+            foreach (TodoModel Todo in items)
             {
-                if (value.ToLower().Contains(FilterValue) && !FilteredValues.Contains(value))
+                if (Todo.Title.ToLower().Contains(FilterValue) || Todo.Description.ToLower().Contains(FilterValue))
                 {
-                    FilteredValues.Add(value);
+                    FilteredValues.Add(Todo);
                 }
             }
 
             return FilteredValues;
         }
-
-        //protected override void OnNavigatedFrom(NavigationEventArgs e)
-        //{
-        //    Page DestinationPage = e.Content as Page;
-        //    if (DestinationPage.GetType() != typeof(DetailPage))
-        //    {
-        //        return;
-        //    }
-
-        //    DetailPage DetailPage = e.Content as DetailPage;
-        //    DetailPage.TodoId = this.SelectedId;
-        //}
     }
 }
