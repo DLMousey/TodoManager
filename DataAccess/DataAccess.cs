@@ -16,13 +16,6 @@ namespace DataAccessLibrary
             {
                 db.Open();
 
-
-                //String tableCommand = "CREATE TABLE IF NOT " +
-                //    "EXISTS MyTable (Primary_Key INTEGER PRIMARY KEY, " +
-                //    "Text_Entry NVARCHAR(2048) NULL)";
-
-                //SqliteCommand createTable = new SqliteCommand(tableCommand, db);
-
                 String TableCommand = "CREATE TABLE IF NOT " +
                     "EXISTS TodoItems (" +
                     "`id` INTEGER PRIMARY KEY," +
@@ -45,9 +38,6 @@ namespace DataAccessLibrary
 
                 SqliteCommand insertCommand = new SqliteCommand();
                 insertCommand.Connection = db;
-
-                //insertCommand.CommandText = "INSERT INTO MyTable VALUES (NULL, @Entry);";
-                //insertCommand.Parameters.AddWithValue("@Entry", InputText);
 
                 List<SqliteParameter> QueryParams = new List<SqliteParameter>();
                 QueryParams.Add(new SqliteParameter("@title", TodoModel.Title));
