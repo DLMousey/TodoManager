@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="TodoManager.Views.ListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TodoManager"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel Orientation="Vertical" Margin="30">
+        <RelativePanel HorizontalAlignment="Stretch">
+            <TextBox Name="Filter_Box" KeyDown="FilterData" PlaceholderText="Filter To-Do Items" 
+                         RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
+        </RelativePanel>
+        <StackPanel VerticalAlignment="Stretch" Orientation="Vertical">
+            <ListView Name="Output">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" Tag="{Binding Id}">
+                            <TextBlock.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Detail" Click="ViewDetail" Tag="{Binding Id}" />
+                                    <MenuFlyoutItem Text="Delete" Click="RemoveData" Tag="{Binding Id}" />
+                                </MenuFlyout>
+                            </TextBlock.ContextFlyout>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </StackPanel>
+</Page>

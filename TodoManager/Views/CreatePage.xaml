@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="TodoManager.Views.CreatePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TodoManager"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel Orientation="Vertical" Margin="15">
+        <RelativePanel Margin="15">
+            <TextBox Name="Title" PlaceholderText="Todo Title" RelativePanel.AlignLeftWithPanel="True"
+                     RelativePanel.AlignRightWithPanel="True" />
+        </RelativePanel>
+        <RelativePanel Margin="15">
+            <TextBox Name="Detail" PlaceholderText="Todo Detail" TextWrapping="Wrap" AcceptsReturn="True" RelativePanel.AlignLeftWithPanel="True"
+                     RelativePanel.AlignRightWithPanel="True" />
+        </RelativePanel>
+        <RelativePanel Margin="15">
+            <Button Name="btnCancel" Click="Cancel" RelativePanel.AlignRightWithPanel="True">Cancel</Button>
+            <Button Name="btnSave" Click="Save" RelativePanel.LeftOf="btnCancel">Save</Button>
+        </RelativePanel>
+    </StackPanel>
+</Page>

@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="TodoManager.Views.DetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TodoManager"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Margin="15">
+        <StackPanel Orientation="Vertical" Margin="30">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="24">Todo Detail</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=Title}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=Description}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="BackBtn" Click="TodoList">Back to List</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
